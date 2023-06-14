@@ -1,10 +1,49 @@
 
+.tudo{
+    width:90% ;
+    margin: auto;
+    background-color:#f2b705 ;
+    
+
+}
+h1{
+    text-align: center;
+    color: #562989;
+}
+p{
+    color:#562989;
+}
+
 img{
-    float: right;
+    float: left;
     width:30% ;
+
 }
 
 
 
+
+.paragrafo{
+  border: #562989 solid 1px; 
+
+}
+body{
+    font-size: 25px;px ;
+}
+.div2{
+    float:right;
+}
+.div4{
+float: right;
+}
+.div6{
+    width:26% ;
+}
+.div7{
+    float: right;
+}
+.div8{
+    width: 27%; ;
+}
 
 
