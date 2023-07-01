@@ -1,0 +1,30 @@
+img{
+    width: 18%;
+    float: left;
+    border-radius: 15px;
+}
+.p1{
+    display: flex;
+    flex-direction: row;
+    float: left;
+}
+.img{
+    width: 30%;
+    float: left;
+    margin: 5px;
+}
+ img{
+    width: 30%;
+    float: left;
+    margin: 120%;
+   
+}
+main{
+    display: grid;
+    width: 60%;
+    margin: auto;
+    height: 30%;
+}
+video{
+display: flex;
+}
