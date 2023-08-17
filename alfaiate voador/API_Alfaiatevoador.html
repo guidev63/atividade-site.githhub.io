@@ -23,10 +23,15 @@
             border-radius: 5px;
             box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
         }
+       
     </style>
 </head>
 
 <body>
+
+ 
+
+
     <div class="weather">
         <h1>Previsão de Temperatura</h1>
         <form id="cityForm">
@@ -35,30 +40,47 @@
             <button type="submit">Obter Temperatura</button>
         </form>
         <div class="temperature" id="temperature"></div>
+        <div class="description" id="description"></div>
+        <div class="humidity" id="humidity"></div>
+        <div class="temp-min" id="tempMin"></div>
+        <div class="temp-max" id="tempMax"></div>
     </div>
 
     <script>
         const apiKey = 'de7cf7f66981a9f0e7c8713daf2d6995';
 
         const cityForm = document.getElementById('cityForm');
-        const temperatureElement = document.getElementById('temperature');
+const temperatureElement = document.getElementById('temperature');
+const descriptionElement = document.getElementById('description');
+const humidityElement = document.getElementById('humidity');
+const tempMinElement = document.getElementById('tempMin');
+const tempMaxElement = document.getElementById('tempMax');
 
-        cityForm.addEventListener('submit', function(event) {
-            event.preventDefault();
+cityForm.addEventListener('submit', function(event) {
+    event.preventDefault();
 
-            const cityName = document.getElementById('city').value;
+    const cityName = document.getElementById('city').value;
 
-            fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${apiKey}`)
-                .then(response => response.json())
-                .then(data => {
-                    const temperature = data.main.temp;
-                    temperatureElement.textContent = `Temperatura em ${cityName}: ${temperature}°C`;
-                })
-                .catch(error => {
-                    temperatureElement.textContent = 'Erro ao carregar os dados da API.';
-                    console.error('Erro ao carregar os dados da API:', error);
-                });
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${apiKey}`)
+        .then(response => response.json())
+        .then(data => {
+            const temperature = data.main.temp;
+            const description = data.weather[0].description;
+            const humidity = data.main.humidity;
+            const tempMin = data.main.temp_min;
+            const tempMax = data.main.temp_max;
+
+            temperatureElement.textContent = `Temperatura em ${cityName}: ${temperature}°C`;
+            descriptionElement.textContent = `Descrição do tempo: ${description}`;
+            humidityElement.textContent = `Umidade: ${humidity}%`;
+            tempMinElement.textContent = `Temp. Mínima: ${tempMin}°C`;
+            tempMaxElement.textContent = `Temp. Máxima: ${tempMax}°C`;
+        })
+        .catch(error => {
+            temperatureElement.textContent = 'Erro ao carregar os dados da API.';
+            console.error('Erro ao carregar os dados da API:', error);
         });
+});
     </script>
 </body>
 </html>
