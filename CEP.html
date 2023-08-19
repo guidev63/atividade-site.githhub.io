@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="meu bootsptra/bootstrap.min-css.css">
+    <script src="meu bootsptra/bootstrap..js"></script>
+
+    <title>Formulário de Cadastro</title>
+</head>
+
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+
+    #cadastroForm {
+        width: 300px;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    label, input {
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    button {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+
+    }
+    
+</style>
+<title>Formulário  Cadastro</title>
+</head>
+<body>
+<div id="cadastroForm">
+    <h1>Cadastramento</h1>
+    <form>
+        <label for="cep">CEP:</label>
+        <input type="text" id="cep" name="cep" maxlength="9" onblur="buscarEndereco(this.value)">
+        <br>
+
+
+        <label for="logradouro">Rua:</label>
+        <input type="text" id="logradouro" name="logradouro">
+        <br>
+
+
+        <label for="bairro">Bairro:</label>
+        <input type="text" id="bairro" name="bairro">
+        <br>
+
+
+        <label for="cidade">Cidade:</label>
+        <input type="text" id="cidade" name="cidade">
+        <br>
+
+
+        <label for="estado">Estado:</label>
+        <input type="text" id="estado" name="estado">
+        <br>
+        <button type="submit">Cadastrar</button>
+    </form>
+</div>
+
+    <script>
+        function buscarEndereco(cep) {
+            fetch(`https://viacep.com.br/ws/${cep}/json/`)
+                .then(response => response.json())
+                .then(data => preencherEndereco(data))
+                .catch(error => console.error('Erro ao buscar endereço:', error));
+        }
+
+        function preencherEndereco(data) {
+            document.getElementById('logradouro').value = data.logradouro || '';
+            document.getElementById('bairro').value = data.bairro ||'';
+            document.getElementById('cidade').value = data.localidade || '';
+            document.getElementById('estado').value = data.uf || '';
+        }
+
+        const form = document.getElementById('cadastroForm');
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+            // Aqui você pode adicionar a lógica para enviar o formulário
+            // para o servidor ou fazer qualquer outra ação necessária.
+            // Exemplo:
+            // const formData = new FormData(form);
+            // fetch('url_do_servidor', {
+            //     method: 'POST',
+            //     body: formData
+            // })
+            // .then(response => response.json())
+            // .then(data => console.log('Resposta do servidor:', data))
+            // .catch(error => console.error('Erro ao enviar formulário:', error));
+        });
+    </script>
+</body>
+
+</html>
+
+</body>
+
+</html>
