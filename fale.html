@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <title>Contact Us Form</title>
+    <style>
+        body {
+            background-color: white;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+    
+        .container {
+            width: 70%;
+            margin: 0 auto;
+        }
+    
+        form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        }
+    
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+    
+        input[type="submit"] {
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    
+        input[type="submit"]:hover {
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form id="contact-form" action="https://api.staticforms.xyz/submit" method="post">
+            <input type="text" name="name" placeholder="nome">
+            <input type="text" name="email" placeholder="Email" />
+            <textarea name="message"></textarea>
+            <input type="text" name="honeypot" style="display:none">
+            <input type="hidden" name="accessKey" value="76cb2010-81ab-4d0b-8ba4-6a0a57eda192">
+            <input type="hidden" name="subject" value="Contact us from - example.com" />
+            <input type="hidden" name="replyTo" value="@">
+            <input type="hidden" name="redirectTo" value="https://example.com/contact/success">
+            <input type="submit" value="Submit" />
+        </form>
+    </div>
+    
+    <script>
+        document.getElementById('contact-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+
+            const formData = new FormData();
+            formData.append('name', name);
+            formData.append('email', email);
+            formData.append('message', message);
+
+            fetch('https://api.staticforms.xyz/submit', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Mensagem enviada com sucesso!');
+                } else {
+                    alert('Erro ao enviar a mensagem.');
+                }
+            })
+            .catch(error => {
+                alert('Ocorreu um erro: ' + error);
+            });
+        });
+    </script>
+</body>
+</html>
