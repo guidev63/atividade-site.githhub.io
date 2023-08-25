@@ -1,37 +1,42 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="meu bootstrap/bootstrap.min.css">
+    <script src="meu bootstrap/bootstrap.min.js"></script>
     <title>Contact Us Form</title>
     <style>
         body {
             background-color: white;
-            color: white;
+            color: black; /* Corrigido para texto preto para melhor visibilidade */
             font-family: Arial, sans-serif;
             text-align: center;
             padding: 50px;
         }
-    
+
         .container {
             width: 70%;
             margin: 0 auto;
         }
-    
+
         form {
             background-color: white;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
         }
-    
-        input[type="text"], textarea {
+
+        input[type="text"],
+        textarea {
             width: 100%;
             padding: 10px;
             margin: 5px 0;
             border: 1px solid #ccc;
             border-radius: 4px;
         }
-    
+
         input[type="submit"] {
             background-color: #333;
             color: white;
@@ -40,29 +45,74 @@
             border-radius: 4px;
             cursor: pointer;
         }
-    
+
         input[type="submit"]:hover {
             background-color: white;
+            color: #333;
+        }
+
+        #background-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        #cabecalho {
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            color: white;
+        }
+
+        .cabeca {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            width: 300px;
+            height: 200px;
         }
     </style>
 </head>
+
 <body>
+
+    <div id="cabecalho"> <!-- Adicionado o cabeçalho com o ID "cabecalho" -->
+        <h1>PAGINA PRINCIPAL</h1>
+        <a href="/alfaiate voador/oi.html" id="botao-centralizado" class="btn btn-primary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-aspect-ratio-fill" viewBox="0 0 16 16">
+            <path d="M0 12.5v-9A1.5 1.5 0 0 1 1.5 2h13A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 12.5zM2.5 4a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 1 0V5h2.5a.5.5 0 0 0 0-1h-3zm11 8a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-1 0V11h-2.5a.5.5 0 0 0 0 1h3z"/>
+          </svg></a>
+    </div>
+
+    <ul class="nav nav-pills nav-justified">
+
+    </ul>
+
+    <video autoplay muted loop id="background-video">
+        <source src="/video/163057 (540p).mp4" type="video/mp4">
+    </video>
+
     <div class="container">
         <form id="contact-form" action="https://api.staticforms.xyz/submit" method="post">
-            <input type="text" name="name" placeholder="nome">
+            <input type="text" name="name" placeholder="Nome">
             <input type="text" name="email" placeholder="Email" />
-            <textarea name="message"></textarea>
+            <textarea name="message" placeholder="Mensagem"></textarea>
             <input type="text" name="honeypot" style="display:none">
             <input type="hidden" name="accessKey" value="76cb2010-81ab-4d0b-8ba4-6a0a57eda192">
             <input type="hidden" name="subject" value="Contact us from - example.com" />
             <input type="hidden" name="replyTo" value="@">
             <input type="hidden" name="redirectTo" value="https://example.com/contact/success">
-            <input type="submit" value="Submit" />
+            <input type="submit" value="Enviar" />
         </form>
     </div>
-    
+
     <script>
-        document.getElementById('contact-form').addEventListener('submit', function(event) {
+        document.getElementById('contact-form').addEventListener('submit', function (event) {
             event.preventDefault();
 
             const name = document.getElementById('name').value;
@@ -78,18 +128,19 @@
                 method: 'POST',
                 body: formData
             })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    alert('Mensagem enviada com sucesso!');
-                } else {
-                    alert('Erro ao enviar a mensagem.');
-                }
-            })
-            .catch(error => {
-                alert('Ocorreu um erro: ' + error);
-            });
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert('Mensagem enviada com sucesso!');
+                    } else {
+                        alert('Erro ao enviar a mensagem.');
+                    }
+                })
+                .catch(error => {
+                    alert('Ocorreu um erro: ' + error);
+                });
         });
     </script>
 </body>
+
 </html>

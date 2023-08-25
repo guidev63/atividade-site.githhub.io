@@ -23,15 +23,23 @@
             border-radius: 5px;
             box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
         }
-       
+        #video-fundo{
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+
+        }
     </style>
 </head>
 
 <body>
-
- 
-
-
+    <video outoplay muted loop id="video-fundo">
+        <source src="/video/cloud_-_2142 (540p).mp4" type="video/mp4">
+    </video>
     <div class="weather">
         <h1>Previsão de Temperatura</h1>
         <form id="cityForm">
